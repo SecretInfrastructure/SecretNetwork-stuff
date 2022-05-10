@@ -30,6 +30,7 @@ require (
 require github.com/cosmos/gorocksdb v1.2.0 // indirect
 
 require (
+	github.com/cosmos/iavl v0.17.3 // indirect
 	github.com/dgraph-io/badger/v2 v2.2007.3 // indirect
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/stretchr/objx v0.3.0 // indirect
@@ -52,7 +53,6 @@ require (
 	github.com/confio/ics23/go v0.7.0 // indirect
 	github.com/cosmos/btcutil v1.0.4 // indirect
 	github.com/cosmos/go-bip39 v1.0.0
-	github.com/cosmos/iavl v0.17.3 // indirect
 	github.com/cosmos/ledger-cosmos-go v0.11.1 // indirect
 	github.com/cosmos/ledger-go v0.9.2 // indirect
 	github.com/danieljoos/wincred v1.0.2 // indirect
@@ -129,9 +129,10 @@ require (
 
 replace (
 	// github.com/cosmos/cosmos-sdk v0.44.5 => github.com/scrtlabs/cosmos-sdk v0.44.7-0.20220208193714-214a72279fd0
-	github.com/cosmos/cosmos-sdk v0.45.1 => github.com/scrtlabs/cosmos-sdk v0.45.4-scrt.0.20220506123023-e9198e81a691
+
+	github.com/cosmos/cosmos-sdk v0.45.1 => github.com/scrtlabs/cosmos-sdk v0.45.4-lior-use-osmo-iavl-test
+	github.com/cosmos/iavl => github.com/osmosis-labs/iavl v0.17.3-osmo-v5
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	// enforce grpc version
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2
-
 )
