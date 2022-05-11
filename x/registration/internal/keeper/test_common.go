@@ -109,7 +109,7 @@ func CreateTestInput(t *testing.T, isCheckTx bool, tempDir string, bootstrap boo
 	keyContract := sdk.NewKVStoreKey(regtypes.StoreKey)
 
 	db := dbm.NewMemDB()
-	ms := store.NewCommitMultiStore(db)
+	ms := store.NewCommitMultiStore(db, log.NewNopLogger())
 	ms.MountStoreWithDB(keyContract, sdk.StoreTypeIAVL, db)
 	err = ms.LoadLatestVersion()
 	require.Nil(t, err)

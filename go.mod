@@ -130,7 +130,7 @@ require (
 replace (
 	// github.com/cosmos/cosmos-sdk v0.44.5 => github.com/scrtlabs/cosmos-sdk v0.44.7-0.20220208193714-214a72279fd0
 
-	github.com/cosmos/cosmos-sdk v0.45.1 => github.com/scrtlabs/cosmos-sdk v0.45.4-lior-use-osmo-iavl-test
+	github.com/cosmos/cosmos-sdk v0.45.1 => github.com/scrtlabs/cosmos-sdk v0.45.4-lior-use-osmo-iavl-tp
 	github.com/cosmos/iavl => github.com/osmosis-labs/iavl v0.17.3-osmo-v5
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	// enforce grpc version
