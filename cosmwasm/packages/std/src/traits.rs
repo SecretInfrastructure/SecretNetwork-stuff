@@ -63,6 +63,38 @@ pub trait ReadonlyStorage {
     ) -> Box<dyn Iterator<Item = KV> + 'a>;
 }
 
+impl<S: ReadonlyStorage> ReadonlyStorage for &S {
+    fn get(&self, key: &[u8]) -> Option<Vec<u8>> {
+        (**self).get(key)
+    }
+
+    #[cfg(feature = "iterator")]
+    fn range<'a>(
+        &'a self,
+        start: Option<&[u8]>,
+        end: Option<&[u8]>,
+        order: Order,
+    ) -> Box<dyn Iterator<Item = KV> + 'a> {
+        (**self).range(start, end, order)
+    }
+}
+
+impl<S: ReadonlyStorage> ReadonlyStorage for &mut S {
+    fn get(&self, key: &[u8]) -> Option<Vec<u8>> {
+        (**self).get(key)
+    }
+
+    #[cfg(feature = "iterator")]
+    fn range<'a>(
+        &'a self,
+        start: Option<&[u8]>,
+        end: Option<&[u8]>,
+        order: Order,
+    ) -> Box<dyn Iterator<Item = KV> + 'a> {
+        (**self).range(start, end, order)
+    }
+}
+
 // Storage extends ReadonlyStorage to give mutable access
 pub trait Storage: ReadonlyStorage {
     fn set(&mut self, key: &[u8], value: &[u8]);
@@ -71,6 +103,16 @@ pub trait Storage: ReadonlyStorage {
     /// The current interface does not allow to differentiate between a key that existed
     /// before and one that didn't exist. See https://github.com/CosmWasm/cosmwasm/issues/290
     fn remove(&mut self, key: &[u8]);
+}
+
+impl<S: Storage> Storage for &mut S {
+    fn set(&mut self, key: &[u8], value: &[u8]) {
+        (*self).set(key, value)
+    }
+
+    fn remove(&mut self, key: &[u8]) {
+        (*self).remove(key)
+    }
 }
 
 /// Api are callbacks to system functions defined outside of the wasm modules.
